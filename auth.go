@@ -20,7 +20,7 @@ func ApiKeyAuth(Verify func(apiKey string) bool) func(c *gin.Context) {
 			return
 		}
 
-		if Verify(apiKey) {
+		if !Verify(apiKey) {
 			ErrorHandler(NewUnauthorizedError(errors.New("authorization api-key is invalid"), "Authorization api-key is invalid"), c)
 			return
 		}
